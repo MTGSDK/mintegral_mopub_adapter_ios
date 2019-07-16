@@ -10,11 +10,6 @@
 #import <MTGSDK/MTGCampaign.h>
 #import <MTGSDK/MTGMediaView.h>
 
-#if __has_include(<MoPubSDKFramework/MPNativeAdConstants.h>)
-#import <MoPubSDKFramework/MPNativeAdConstants.h>
-#else
-#import "MPNativeAdConstants.h"
-#endif
 
 NSString *const kMTGVideoAdsEnabledKey = @"video_enabled";
 

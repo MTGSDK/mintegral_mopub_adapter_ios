@@ -45,18 +45,12 @@ NSString *const kMintegralErrorDomain = @"com.mintegral.iossdk.mopub";
 
 +(void)setGDPRInfo:(NSDictionary *)info{
     
-    
-    if([[MoPub sharedInstance] canCollectPersonalInfo])
-    {
-        [[MTGSDK sharedInstance] setConsentStatus:YES];
-         NSString *privateInfo = @"Can send GDPR";
-         NSLog(@"%@", privateInfo);
-    }else{
-        [[MTGSDK sharedInstance] setConsentStatus:NO];
-        NSString *privateInfo = @"Cannot send GDPR";
-        NSLog(@"%@", privateInfo);
+    SEL selector = NSSelectorFromString(@"canCollectPersonalInfo");
+    if ([[MoPub sharedInstance] respondsToSelector:selector]) {
+        
+        BOOL consentOrNot = [[MoPub sharedInstance] performSelector:selector withObject:nil];
+        [[MTGSDK sharedInstance] setConsentStatus:consentOrNot];
     }
-   
 }
 
 @end

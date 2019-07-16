@@ -13,18 +13,6 @@
 #import "MintegralAdapterHelper.h"
 
 
-#if __has_include(<MoPubSDKFramework/MoPub.h>)
-#import <MoPubSDKFramework/MoPub.h>
-#else
-#import "MoPub.h"
-#endif
-
-#if __has_include(<MoPubSDKFramework/MPLogging.h>)
-#import <MoPubSDKFramework/MPLogging.h>
-#else
-#import "MPLogging.h"
-#endif
-
 typedef enum {
     MintegralErrorBannerParaUnresolveable = 19,
     MintegralErrorBannerCamPaignListEmpty,

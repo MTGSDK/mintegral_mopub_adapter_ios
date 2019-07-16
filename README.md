@@ -24,8 +24,7 @@ CocoaPods is used to install and manage dependencies in existing Xcode projects.
 
     ```
     platform :ios, '7.0'
-    pod 'MintegralAdSDK/RewardVideoAd'
-    #pod 'MintegralAdSDK'
+    pod 'MintegralAdSDKAdapterForMopub/RewardVideoAdAdapter'
 
     ```
 

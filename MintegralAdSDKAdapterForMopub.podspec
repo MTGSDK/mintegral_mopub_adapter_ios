@@ -2,7 +2,7 @@ Pod::Spec.new do |spec|
 
 
   spec.name         = 'MintegralAdSDKAdapterForMopub'
-  spec.version      = '1.7.1'
+  spec.version      = '1.7.2'
   spec.summary      = 'Mintegral Network CustomEvent for Mopub Ad Mediation'
   spec.homepage     = 'http://cdn-adn.rayjump.com/cdn-adn/v2/markdown_v2/index.html?file=sdk-m_sdk-ios&lang=en'
   spec.description  = <<-DESC   

@@ -9,6 +9,7 @@
 #import <MTGSDK/MTGNativeAdManager.h>
 #import <MTGSDK/MTGCampaign.h>
 #import <MTGSDK/MTGMediaView.h>
+#import <MTGSDK/MTGAdChoicesView.h>
 
 
 NSString *const kMTGVideoAdsEnabledKey = @"video_enabled";
@@ -139,7 +140,13 @@ NSString *const kMTGVideoAdsEnabledKey = @"video_enabled";
 
 - (UIView *)privacyInformationIconView
 {
-    return nil;
+    if (CGSizeEqualToSize(_campaign.adChoiceIconSize, CGSizeZero)) {
+        return nil;
+    } else {
+        MTGAdChoicesView * adChoicesView = [[MTGAdChoicesView alloc] initWithFrame:CGRectMake(0, 0, _campaign.adChoiceIconSize.width, _campaign.adChoiceIconSize.height)];
+        adChoicesView.campaign = _campaign;
+        return adChoicesView;
+    }
 }
 
 - (UIView *)mainMediaView

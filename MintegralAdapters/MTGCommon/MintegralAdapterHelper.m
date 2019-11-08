@@ -47,9 +47,11 @@ NSString *const kMintegralErrorDomain = @"com.mintegral.iossdk.mopub";
     
     SEL selector = NSSelectorFromString(@"canCollectPersonalInfo");
     if ([[MoPub sharedInstance] respondsToSelector:selector]) {
-        
+        #pragma clang diagnostic push
+        #pragma clang diagnostic ignored "-Wdeprecated-declarations"
         BOOL consentOrNot = [[MoPub sharedInstance] performSelector:selector withObject:nil];
         [[MTGSDK sharedInstance] setConsentStatus:consentOrNot];
+        #pragma clang diagnostic pop
     }
 }
 

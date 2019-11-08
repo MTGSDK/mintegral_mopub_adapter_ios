@@ -16,7 +16,7 @@
 #endif
 
 
-#define MintegralAdapterVersion  @"5.7.1.0"
+#define MintegralAdapterVersion  @"5.8.3.1"
 
 extern NSString *const kMintegralErrorDomain;
 

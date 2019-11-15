@@ -213,15 +213,15 @@
  */
 - (void)onVideoAdDismissed:(nullable NSString *)unitId withConverted:(BOOL)converted withRewardInfo:(nullable MTGRewardAdInfo *)rewardInfo{
 
-    [self.delegate rewardedVideoWillDisappearForCustomEvent:self];
-    [self.delegate rewardedVideoDidDisappearForCustomEvent:self];
-
-    if (!converted || !rewardInfo) {
-        return;
+    if (rewardInfo) {
+        MPRewardedVideoReward *reward = [[MPRewardedVideoReward alloc] initWithCurrencyType:rewardInfo.rewardName amount:[NSNumber numberWithInteger:rewardInfo.rewardAmount]];
+        [self.delegate rewardedVideoShouldRewardUserForCustomEvent:self reward:reward];
     }
 
-    MPRewardedVideoReward *reward = [[MPRewardedVideoReward alloc] initWithCurrencyType:rewardInfo.rewardName amount:[NSNumber numberWithInteger:rewardInfo.rewardAmount]];
-    [self.delegate rewardedVideoShouldRewardUserForCustomEvent:self reward:reward];
+    
+
+    [self.delegate rewardedVideoWillDisappearForCustomEvent:self];
+    [self.delegate rewardedVideoDidDisappearForCustomEvent:self];
 
 
 }

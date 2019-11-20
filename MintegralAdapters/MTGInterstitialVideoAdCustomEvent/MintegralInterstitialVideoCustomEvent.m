@@ -8,31 +8,38 @@
 #import "MintegralInterstitialVideoCustomEvent.h"
 #import <MTGSDK/MTGSDK.h>
 #import <MTGSDKInterstitialVideo/MTGInterstitialVideoAdManager.h>
+#import <MTGSDKInterstitialVideo/MTGBidInterstitialVideoAdManager.h>
 #import "MintegralAdapterHelper.h"
 
+#if __has_include(<MoPubSDKFramework/MoPub.h>)
+#import <MoPubSDKFramework/MoPub.h>
+#else
+#import "MoPub.h"
+#endif
 
-@interface MintegralInterstitialVideoCustomEvent()<MTGInterstitialVideoDelegate>
+@interface MintegralInterstitialVideoCustomEvent()<MTGInterstitialVideoDelegate, MTGBidInterstitialVideoDelegate>
 
 @property (nonatomic, copy) NSString *adUnit;
 @property (nonatomic,strong) NSTimer  *queryTimer;
+@property (nonatomic, copy) NSString *adm;
 
 @property (nonatomic, readwrite, strong) MTGInterstitialVideoAdManager *mtgInterstitialVideoAdManager;
-
+@property (nonatomic,strong)  MTGBidInterstitialVideoAdManager *ivBidAdManager;
 @end
 
 
 @implementation MintegralInterstitialVideoCustomEvent
 
 
-- (void)requestInterstitialWithCustomEventInfo:(NSDictionary *)info
+- (void)requestInterstitialWithCustomEventInfo:(NSDictionary *)info adMarkup:(NSString *)adMarkup
 {
     NSString *appId = [info objectForKey:@"appId"];
     NSString *appKey = [info objectForKey:@"appKey"];
     NSString *unitId = [info objectForKey:@"unitId"];
     
     NSString *errorMsg = nil;
-    if (!appId) errorMsg = @"Invalid Mintegral appId";
-    if (!appKey) errorMsg = @"Invalid Mintegral appKey";
+//    if (!appId) errorMsg = @"Invalid Mintegral appId";
+//    if (!appKey) errorMsg = @"Invalid Mintegral appKey";
     if (!unitId) errorMsg = @"Invalid Mintegral unitId";
     
     if (errorMsg) {
@@ -52,11 +59,23 @@
     
     self.adUnit = unitId;
     
-    if (!_mtgInterstitialVideoAdManager) {
-        _mtgInterstitialVideoAdManager = [[MTGInterstitialVideoAdManager alloc] initWithUnitID:self.adUnit delegate:self];
-    }
+    self.adm = adMarkup;
+    if (self.adm) {
+        
+        if (!_ivBidAdManager ) {
+               _ivBidAdManager  = [[MTGBidInterstitialVideoAdManager alloc] initWithUnitID:self.adUnit delegate:self];
+            _ivBidAdManager.delegate = self;
+        }
+        [_ivBidAdManager loadAdWithBidToken:self.adm];
+            
+    }else{
     
-    [_mtgInterstitialVideoAdManager loadAd];
+        if (!_mtgInterstitialVideoAdManager) {
+            _mtgInterstitialVideoAdManager = [[MTGInterstitialVideoAdManager alloc] initWithUnitID:self.adUnit delegate:self];
+        }
+    
+        [_mtgInterstitialVideoAdManager loadAd];
+    }
 }
 
 - (BOOL)enableAutomaticImpressionAndClickTracking
@@ -68,7 +87,11 @@
 
 - (void)showInterstitialFromRootViewController:(UIViewController *)rootViewController
 {
-    [_mtgInterstitialVideoAdManager showFromViewController:rootViewController];
+    if (self.adm) {
+        [_ivBidAdManager showFromViewController:rootViewController];
+    }else{
+        [_mtgInterstitialVideoAdManager showFromViewController:rootViewController];
+    }
 }
 
 

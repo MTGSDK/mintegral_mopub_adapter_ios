@@ -15,6 +15,18 @@
 #import <MTGSDKBanner/MTGBannerAdViewDelegate.h>
 
 
+#if __has_include(<MoPubSDKFramework/MoPub.h>)
+#import <MoPubSDKFramework/MoPub.h>
+#else
+#import "MoPub.h"
+#endif
+
+#if __has_include(<MoPubSDKFramework/MPLogging.h>)
+#import <MoPubSDKFramework/MPLogging.h>
+#else
+#import "MPLogging.h"
+#endif
+
 typedef enum {
     MintegralErrorBannerParaUnresolveable = 19,
     MintegralErrorBannerCamPaignListEmpty,
@@ -26,19 +38,19 @@ typedef enum {
 @property(nonatomic,strong) MTGBannerAdView *bannerAdView;
 @property (nonatomic, strong) NSString * currentUnitID;
 @property (nonatomic, assign) CGSize currentSize;
-
+@property (nonatomic, copy) NSString *adm;
 @end
 
 @implementation MintegralBannerCustomEvent
 
-- (void)requestAdWithSize:(CGSize)size customEventInfo:(NSDictionary *)info{
+- (void)requestAdWithSize:(CGSize)size customEventInfo:(NSDictionary *)info adMarkup:(NSString *)adMarkup{
     NSString *appId = [info objectForKey:@"appId"];
     NSString *appKey = [info objectForKey:@"appKey"];
     NSString *unitId = [info objectForKey:@"unitId"];
     
     NSString *errorMsg = nil;
-    if (!appId) errorMsg = @"Invalid Mintegral appId";
-    if (!appKey) errorMsg = @"Invalid Mintegral appKey";
+//    if (!appId) errorMsg = @"Invalid Mintegral appId";
+//    if (!appKey) errorMsg = @"Invalid Mintegral appKey";
     if (!unitId) errorMsg = @"Invalid Mintegral unitId";
     
     if (errorMsg) {
@@ -57,19 +69,23 @@ typedef enum {
         [MintegralAdapterHelper sdkInitialized];
     }
     
-    
     _currentUnitID = unitId;
     _currentSize = size;
     
     UIViewController * vc =  [UIApplication sharedApplication].keyWindow.rootViewController;
     _bannerAdView = [[MTGBannerAdView alloc] initBannerAdViewWithAdSize:size unitId:unitId rootViewController:vc];
     _bannerAdView.delegate = self;
-    [_bannerAdView loadBannerAd];
+//    adMarkup = @"7546804272925719591  ";
+    self.adm = adMarkup;
+    if (self.adm) {
+        [_bannerAdView loadBannerAdWithBidToken:self.adm];
+    }else{
+    
+        [_bannerAdView loadBannerAd];
+    }
 }
 
-- (void)requestAdWithSize:(CGSize)size customEventInfo:(NSDictionary *)info adMarkup:(NSString *)adMarkup{
-    [self requestAdWithSize:size customEventInfo:info];
-}
+
 
 #pragma mark --
 #pragma mark -- MTGBannerAdViewDelegate

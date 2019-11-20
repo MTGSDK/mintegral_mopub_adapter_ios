@@ -11,6 +11,11 @@
 #import <MTGSDK/MTGMediaView.h>
 #import <MTGSDK/MTGAdChoicesView.h>
 
+#if __has_include(<MoPubSDKFramework/MPNativeAdConstants.h>)
+#import <MoPubSDKFramework/MPNativeAdConstants.h>
+#else
+#import "MPNativeAdConstants.h"
+#endif
 
 NSString *const kMTGVideoAdsEnabledKey = @"video_enabled";
 
@@ -141,8 +146,10 @@ NSString *const kMTGVideoAdsEnabledKey = @"video_enabled";
 - (UIView *)privacyInformationIconView
 {
     if (CGSizeEqualToSize(_campaign.adChoiceIconSize, CGSizeZero)) {
+        NSLog(@"adchoice size is 0");
         return nil;
     } else {
+        NSLog(@"adchoice size is normal");
         MTGAdChoicesView * adChoicesView = [[MTGAdChoicesView alloc] initWithFrame:CGRectMake(0, 0, _campaign.adChoiceIconSize.width, _campaign.adChoiceIconSize.height)];
         adChoicesView.campaign = _campaign;
         return adChoicesView;

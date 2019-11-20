@@ -45,14 +45,18 @@ NSString *const kMintegralErrorDomain = @"com.mintegral.iossdk.mopub";
 
 +(void)setGDPRInfo:(NSDictionary *)info{
     
-    SEL selector = NSSelectorFromString(@"canCollectPersonalInfo");
-    if ([[MoPub sharedInstance] respondsToSelector:selector]) {
-        #pragma clang diagnostic push
-        #pragma clang diagnostic ignored "-Wdeprecated-declarations"
-        BOOL consentOrNot = [[MoPub sharedInstance] performSelector:selector withObject:nil];
-        [[MTGSDK sharedInstance] setConsentStatus:consentOrNot];
-        #pragma clang diagnostic pop
+    
+    if([[MoPub sharedInstance] canCollectPersonalInfo])
+    {
+        [[MTGSDK sharedInstance] setConsentStatus:YES];
+         NSString *privateInfo = @"Can send GDPR";
+         NSLog(@"%@", privateInfo);
+    }else{
+        [[MTGSDK sharedInstance] setConsentStatus:NO];
+        NSString *privateInfo = @"Cannot send GDPR";
+        NSLog(@"%@", privateInfo);
     }
+   
 }
 
 @end

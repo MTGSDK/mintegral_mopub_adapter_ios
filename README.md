@@ -28,7 +28,7 @@ CocoaPods is used to install and manage dependencies in existing Xcode projects.
     pod 'MintegralAdSDKAdapterForMopub/InterstitialVideoAdAdapter' // for interstitialVideo ad
     pod 'MintegralAdSDKAdapterForMopub/BannerAdAdapter' // for banner ad
     
-```
+    ```
     
 4. Save the file.
 5. Open a terminal and `cd` to the directory containing the Podfile.
@@ -43,7 +43,9 @@ CocoaPods is used to install and manage dependencies in existing Xcode projects.
     ```
     $ pod install
     ```
-    >Note: will automatically install Mintegral SDKs in the meantime of installing Mopub Adapters.So there is no need to add "Pod MintegralAdSDK" in Podfile.
+
+    > Note: will automatically install Mintegral SDKs in the meantime of installing Mopub Adapters.So there is no need to add "Pod MintegralAdSDK" in Podfile.
+
 
 7. Open your app's `.xcworkspace` file to launch Xcode.
    Use this file for all development on your app.

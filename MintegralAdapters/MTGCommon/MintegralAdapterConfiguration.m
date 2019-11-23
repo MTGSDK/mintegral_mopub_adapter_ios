@@ -10,7 +10,7 @@
 #import "MintegralAdapterConfiguration.h"
 #import <MTGSDK/MTGSDK.h>
 #import <MTGSDKBidding/MTGBiddingSDK.h>
-#import <MoPub.h>
+#import "MoPub.h"
 #import "MintegralAdapterHelper.h"
 @interface MintegralAdapterConfiguration()
 

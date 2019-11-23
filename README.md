@@ -18,20 +18,18 @@ $ sudo gem install cocoapods
 CocoaPods is used to install and manage dependencies in existing Xcode projects.
 
 1. Create an Xcode project, and save it to your local machine.
-2. Create a file named `Podfile` in your project directory. This file defines
-   your project's dependencies, and is commonly referred to as a Podspec.
+2. Open a terminal and `cd` to the directory of your project. Then run the `pod init` command. Podfile would be created.
 3. Open `Podfile`, and add your dependencies. A simple Podspec is shown here:
 
     ```
-    platform :ios, '8.0'
+    platform :ios, '9.0'
     pod 'MintegralAdSDKAdapterForMopub/RewardVideoAdAdapter' // for rewardVideo ad
-    #    pod 'MintegralAdSDKAdapterForMopubNativeAdAdapter' // for native ad
-    #    pod 'MintegralAdSDKAdapterForMopub/InterstitialVideoAdAdapter' // for interstitialVideo ad
-    #    pod 'MintegralAdSDKAdapterForMopub/InterstitialAdAdapter' // for interstitial ad
-    #    pod 'MintegralAdSDKAdapterForMopub/BannerAdAdapter' // for banner ad
-
-    ```
-
+    pod 'MintegralAdSDKAdapterForMopub/NativeAdAdapter' // for native ad
+    pod 'MintegralAdSDKAdapterForMopub/InterstitialVideoAdAdapter' // for interstitialVideo ad
+    pod 'MintegralAdSDKAdapterForMopub/BannerAdAdapter' // for banner ad
+    
+```
+    
 4. Save the file.
 5. Open a terminal and `cd` to the directory containing the Podfile.
 
@@ -40,11 +38,12 @@ CocoaPods is used to install and manage dependencies in existing Xcode projects.
     ```
 
 6. Run the `pod install` command. This will install the SDKs specified in the
-   Podspec, along with any dependencies they may have.
+   Podspec, along with any dependencies they may have. 
 
     ```
     $ pod install
     ```
+    >Note: will automatically install Mintegral SDKs in the meantime of installing Mopub Adapters.So there is no need to add "Pod MintegralAdSDK" in Podfile.
 
 7. Open your app's `.xcworkspace` file to launch Xcode.
    Use this file for all development on your app.

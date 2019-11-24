@@ -13,7 +13,10 @@ guide](https://guides.cocoapods.org/using/getting-started.html#getting-started).
 $ sudo gem install cocoapods
 ```
 
-### Add a Mintegral SDK to your iOS app
+### Add  Mintegral Adapter to your iOS app
+
+**Latest Release Version**
+* 5.8.4.1
 
 CocoaPods is used to install and manage dependencies in existing Xcode projects.
 
@@ -44,7 +47,7 @@ CocoaPods is used to install and manage dependencies in existing Xcode projects.
     $ pod install
     ```
 
-    > Note: will automatically install Mintegral SDKs in the meantime of installing Mopub Adapters.So there is no need to add "Pod MintegralAdSDK" in Podfile.
+    > Note: Mintegral SDKs would be automatically installed in the meantime of installing Mopub Adapters.So there is no need to add "Pod MintegralAdSDK" in Podfile.
 
 
 7. Open your app's `.xcworkspace` file to launch Xcode.

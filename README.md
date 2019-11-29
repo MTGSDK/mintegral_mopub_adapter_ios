@@ -16,7 +16,7 @@ $ sudo gem install cocoapods
 ### Add  Mintegral Adapter to your iOS app
 
 **Latest Release Version**
-* 5.8.4.1
+* 5.8.4.2
 
 CocoaPods is used to install and manage dependencies in existing Xcode projects.
 
@@ -26,10 +26,18 @@ CocoaPods is used to install and manage dependencies in existing Xcode projects.
 
     ```
     platform :ios, '9.0'
-    pod 'MintegralAdSDKAdapterForMopub/RewardVideoAdAdapter' // for rewardVideo ad
-    pod 'MintegralAdSDKAdapterForMopub/NativeAdAdapter' // for native ad
-    pod 'MintegralAdSDKAdapterForMopub/InterstitialVideoAdAdapter' // for interstitialVideo ad
-    pod 'MintegralAdSDKAdapterForMopub/BannerAdAdapter' // for banner ad
+    
+    #for rewardVideo ad
+    pod 'MintegralAdSDKAdapterForMopub/RewardVideoAdAdapter'
+    
+    #for rewardVideo ad
+    pod 'MintegralAdSDKAdapterForMopub/NativeAdAdapter' 
+    
+    #for interstitialVideo ad
+    pod 'MintegralAdSDKAdapterForMopub/InterstitialVideoAdAdapter'
+    
+    #for interstitialVideo ad
+    pod 'MintegralAdSDKAdapterForMopub/BannerAdAdapter'
     
     ```
     

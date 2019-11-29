@@ -1,6 +1,11 @@
 # Mintegral - iOS MoPubAdapter Changelog
 
-#### 5.8.4.1 - 
+#### 5.8.4.2
+
+- fix reward callback
+
+#### 5.8.4.1 -
+
 - support Mopub 5.10
 - Using Mintegral SDK v5.8.4
 -available on iOS 8,9,10,11

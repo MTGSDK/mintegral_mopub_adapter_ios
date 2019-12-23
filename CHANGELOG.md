@@ -1,5 +1,8 @@
 # Mintegral - iOS MoPubAdapter Changelog
 
+#### 5.8.6.0
+support sdk 5.8.6
+
 #### 5.8.5.0
 support sdk 5.8.5
 

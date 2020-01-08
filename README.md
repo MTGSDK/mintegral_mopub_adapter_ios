@@ -15,8 +15,6 @@ $ sudo gem install cocoapods
 
 ### Add  Mintegral Adapter to your iOS app
 
-**Latest Release Version**
-* 5.8.4.2
 
 CocoaPods is used to install and manage dependencies in existing Xcode projects.
 
@@ -60,3 +58,5 @@ CocoaPods is used to install and manage dependencies in existing Xcode projects.
 
 7. Open your app's `.xcworkspace` file to launch Xcode.
    Use this file for all development on your app.
+
+## [Changelog](./CHANGELOG.md)

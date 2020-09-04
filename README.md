@@ -23,20 +23,10 @@ CocoaPods is used to install and manage dependencies in existing Xcode projects.
 3. Open `Podfile`, and add your dependencies. A simple Podspec is shown here:
 
     ```
-    platform :ios, '9.0'
-    
-    #for rewardVideo ad
-    pod 'MintegralAdSDKAdapterForMopub/RewardVideoAdAdapter'
-    
-    #for native ad
-    pod 'MintegralAdSDKAdapterForMopub/NativeAdAdapter' 
-    
-    #for interstitialVideo ad
-    pod 'MintegralAdSDKAdapterForMopub/InterstitialVideoAdAdapter'
-    
-    #for banner ad
-    pod 'MintegralAdSDKAdapterForMopub/BannerAdAdapter'
-    
+    platform :ios, '10.0'
+
+    pod 'MintegralAdSDKAdapterForMopub'
+
     ```
     
 4. Save the file.

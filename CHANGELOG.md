@@ -1,5 +1,10 @@
 # Mintegral - iOS MoPubAdapter Changelog
 
+
+#### 6.5.0.1
+- renew all the adapter class fileame
+- Using Mintegral SDK v6.5.0 and above
+
 #### 5.8.7.0
 support sdk 5.8.7
 

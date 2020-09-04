@@ -1,10 +1,3 @@
-//
-//  MintegralNativeAdAdapter.h
-//  MoPubSampleApp
-//
-//  Copyright © 2016年 MoPub. All rights reserved.
-//
-
 #import <Foundation/Foundation.h>
 #if __has_include(<MoPub/MoPub.h>)
     #import <MoPub/MoPub.h>
@@ -15,13 +8,14 @@
 #endif
 
 @class  MTGNativeAdManager;
+@class MTGBidNativeAdManager;
 
 extern NSString *const kMTGVideoAdsEnabledKey;
 
-@interface MintegralNativeAdAdapter : NSObject <MPNativeAdAdapter>
+@interface MintegralNetworkNativeAdAdapter : NSObject <MPNativeAdAdapter>
 @property (nonatomic, weak) id<MPNativeAdAdapterDelegate> delegate;
 @property (nonatomic, readonly) NSArray *nativeAds;
 
-- (instancetype)initWithNativeAds:(NSArray *)nativeAds nativeAdManager:(MTGNativeAdManager *)nativeAdManager withUnitId:(NSString *)unitId videoSupport:(BOOL)videoSupport;
+- (instancetype)initWithNativeAds:(NSArray *)nativeAds nativeAdManager:(MTGNativeAdManager *)nativeAdManager bidAdManager:(MTGBidNativeAdManager *)bidAdManager withUnitId:(NSString *)unitId;
 
 @end

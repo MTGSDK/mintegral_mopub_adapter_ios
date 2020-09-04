@@ -2,7 +2,7 @@
 
   "name": "MintegralAdSDKAdapterForMopub",
 
-  "version": "6.5.0.1",
+  "version": "6.5.0.0",
 
   "summary": "Mintegral Adapters for mediating through MoPub.",
 
@@ -28,7 +28,7 @@
 
     "git": "https://github.com/MTGSDK/mintegral_mopub_adapter_ios.git",
 
-    "tag": "6.5.0.1"
+    "tag": "6.5.0.0"
 
   },
 

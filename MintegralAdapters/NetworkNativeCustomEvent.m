@@ -1,6 +1,6 @@
-#import "MintegralNetworkNativeCustomEvent.h"
-#import "MintegralNetworkNativeAdAdapter.h"
-#import "MintegralNetworkAdapterConfiguration.h"
+#import "NetworkNativeCustomEvent.h"
+#import "NetworkNativeAdAdapter.h"
+#import "NetworkAdapterConfiguration.h"
 #import <MTGSDK/MTGSDK.h>
 #if __has_include("MoPub.h")
     #import "MPNativeAd.h"
@@ -8,7 +8,7 @@
     #import "MPLogging.h"
 #endif
 
-@interface MintegralNetworkNativeCustomEvent()<MTGNativeAdManagerDelegate, MTGMediaViewDelegate, MTGBidNativeAdManagerDelegate>
+@interface NetworkNativeCustomEvent()<MTGNativeAdManagerDelegate, MTGMediaViewDelegate, MTGBidNativeAdManagerDelegate>
 
 @property (nonatomic, readwrite, strong) MTGNativeAdManager *mtgNativeAdManager;
 @property (nonatomic, readwrite, copy) NSString *adUnitId;
@@ -18,7 +18,7 @@
 @property (nonatomic, copy) NSString *adm;
 @end
 
-@implementation MintegralNetworkNativeCustomEvent
+@implementation NetworkNativeCustomEvent
 
 - (void)requestAdWithCustomEventInfo:(NSDictionary *)info adMarkup:(NSString *)adMarkup
 {
@@ -46,7 +46,7 @@
     self.adm = adMarkup;
     self.adUnitId = unitId;
     
-    [MintegralNetworkAdapterConfiguration initializeMintegral:info setAppID:appId appKey:appKey];
+    [NetworkAdapterConfiguration initializeMintegral:info setAppID:appId appKey:appKey];
     
     if (self.adm) {
         if (_bidAdManager == nil) {
@@ -73,7 +73,7 @@
 
 - (void)nativeAdsLoaded:(nullable NSArray *)nativeAds nativeManager:(nonnull MTGNativeAdManager *)nativeManager {
     MPLogInfo(@"Mintegral traditional nativeAdsLoaded");
-    MintegralNetworkNativeAdAdapter *adAdapter = [[MintegralNetworkNativeAdAdapter alloc] initWithNativeAds:nativeAds nativeAdManager:_mtgNativeAdManager bidAdManager:nil withUnitId:self.adUnitId];
+    NetworkNativeAdAdapter *adAdapter = [[NetworkNativeAdAdapter alloc] initWithNativeAds:nativeAds nativeAdManager:_mtgNativeAdManager bidAdManager:nil withUnitId:self.adUnitId];
     MPNativeAd *interfaceAd = [[MPNativeAd alloc] initWithAdAdapter:adAdapter];
     
     MPLogAdEvent([MPLogEvent adLoadSuccessForAdapter:NSStringFromClass(self.class)], self.adUnitId);
@@ -88,7 +88,7 @@
 - (void)nativeAdsLoaded:(NSArray *)nativeAds bidNativeManager:(MTGBidNativeAdManager *)bidNativeManager{
     
     MPLogInfo(@"Mintegral bidding nativeAdsLoaded");
-    MintegralNetworkNativeAdAdapter *adAdapter = [[MintegralNetworkNativeAdAdapter alloc] initWithNativeAds:nativeAds nativeAdManager:nil bidAdManager:_bidAdManager withUnitId:self.adUnitId];
+    NetworkNativeAdAdapter *adAdapter = [[NetworkNativeAdAdapter alloc] initWithNativeAds:nativeAds nativeAdManager:nil bidAdManager:_bidAdManager withUnitId:self.adUnitId];
     MPNativeAd *interfaceAd = [[MPNativeAd alloc] initWithAdAdapter:adAdapter];
     
     MPLogAdEvent([MPLogEvent adLoadSuccessForAdapter:NSStringFromClass(self.class)], self.adUnitId);

@@ -1,12 +1,12 @@
 #import <Foundation/Foundation.h>
-#import "MintegralNetworkAdapterConfiguration.h"
+#import "NetworkAdapterConfiguration.h"
 #import <MTGSDK/MTGSDK.h>
 #import <MTGSDKBidding/MTGBiddingSDK.h>
 #if __has_include("MoPub.h")
     #import "MoPub.h"
 #endif
 
-@interface MintegralNetworkAdapterConfiguration()
+@interface NetworkAdapterConfiguration()
 
 @end
 
@@ -17,7 +17,7 @@ NSString *const kMintegralErrorDomain = @"com.mintegral.iossdk.mopub";
 NSString *const kPluginNumber = @"Y+H6DFttYrPQYcIA+F2F+F5/Hv==";
 NSString *const kNetworkName = @"mintegral";
 
-@implementation MintegralNetworkAdapterConfiguration
+@implementation NetworkAdapterConfiguration
 
 #pragma mark - MPAdapterConfiguration
 
@@ -69,7 +69,7 @@ NSString *const kNetworkName = @"mintegral";
         return;
     }
     
-    [MintegralNetworkAdapterConfiguration initializeMintegral:configuration setAppID:appId appKey:appKey];
+    [NetworkAdapterConfiguration initializeMintegral:configuration setAppID:appId appKey:appKey];
     
     if (complete != nil) {
         complete(nil);
@@ -77,10 +77,10 @@ NSString *const kNetworkName = @"mintegral";
 }
 
 +(void)initializeMintegral:(NSDictionary *)info setAppID:(nonnull NSString *)appId appKey:(nonnull NSString *)appKey {
-    if (![MintegralNetworkAdapterConfiguration isSDKInitialized]) {
+    if (![NetworkAdapterConfiguration isSDKInitialized]) {
         [[MTGSDK sharedInstance] setConsentStatus:[[MoPub sharedInstance] canCollectPersonalInfo]];
         [[MTGSDK sharedInstance] setAppID:appId ApiKey:appKey];
-        [MintegralNetworkAdapterConfiguration sdkInitialized];
+        [NetworkAdapterConfiguration sdkInitialized];
     }
 }
 

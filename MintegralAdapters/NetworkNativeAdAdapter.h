@@ -12,7 +12,7 @@
 
 extern NSString *const kMTGVideoAdsEnabledKey;
 
-@interface MintegralNetworkNativeAdAdapter : NSObject <MPNativeAdAdapter>
+@interface NetworkNativeAdAdapter : NSObject <MPNativeAdAdapter>
 @property (nonatomic, weak) id<MPNativeAdAdapterDelegate> delegate;
 @property (nonatomic, readonly) NSArray *nativeAds;
 

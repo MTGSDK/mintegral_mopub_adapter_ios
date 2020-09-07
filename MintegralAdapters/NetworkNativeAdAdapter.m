@@ -1,4 +1,4 @@
-#import "MintegralNetworkNativeAdAdapter.h"
+#import "NetworkNativeAdAdapter.h"
 #import <MTGSDK/MTGNativeAdManager.h>
 #import <MTGSDK/MTGBidNativeAdManager.h>
 #import <MTGSDK/MTGCampaign.h>
@@ -11,7 +11,7 @@
 
 NSString *const kMTGVideoAdsEnabledKey = @"video_enabled";
 
-@interface MintegralNetworkNativeAdAdapter () <MTGNativeAdManagerDelegate, MTGMediaViewDelegate, MTGBidNativeAdManagerDelegate>
+@interface NetworkNativeAdAdapter () <MTGNativeAdManagerDelegate, MTGMediaViewDelegate, MTGBidNativeAdManagerDelegate>
 
 @property (nonatomic, readonly) MTGNativeAdManager *nativeAdManager;
 @property (nonatomic, strong) MTGBidNativeAdManager *nativeBidAdManager;
@@ -22,7 +22,7 @@ NSString *const kMTGVideoAdsEnabledKey = @"video_enabled";
 @property (nonatomic, copy) NSString *adm;
 
 @end
-@implementation MintegralNetworkNativeAdAdapter
+@implementation NetworkNativeAdAdapter
 
 - (instancetype)initWithNativeAds:(NSArray *)nativeAds nativeAdManager:(MTGNativeAdManager *)nativeAdManager bidAdManager:(MTGBidNativeAdManager *)bidAdManager withUnitId:(NSString *)unitId{
     MPLogInfo(@"initWithNativeAds for Mintegral");

@@ -6,6 +6,6 @@
     #import "MPFullscreenAdAdapter.h"
 #endif
 
-@interface MintegralNetworkInterstitialCustomEvent : MPFullscreenAdAdapter <MPThirdPartyFullscreenAdAdapter>
+@interface NetworkInterstitialCustomEvent : MPFullscreenAdAdapter <MPThirdPartyFullscreenAdAdapter>
 
 @end

@@ -1,8 +1,8 @@
-#import "MintegralNetworkInterstitialCustomEvent.h"
+#import "NetworkInterstitialCustomEvent.h"
 #import <MTGSDK/MTGSDK.h>
 #import <MTGSDKInterstitialVideo/MTGInterstitialVideoAdManager.h>
 #import <MTGSDKInterstitialVideo/MTGBidInterstitialVideoAdManager.h>
-#import "MintegralNetworkAdapterConfiguration.h"
+#import "NetworkAdapterConfiguration.h"
 #if __has_include(<MoPubSDKFramework/MoPub.h>)
     #import <MoPubSDKFramework/MoPub.h>
 #elif __has_include(<MoPub/MoPub.h>)
@@ -11,7 +11,7 @@
     #import "MoPub.h"
 #endif
 
-@interface MintegralNetworkInterstitialCustomEvent()<MTGInterstitialVideoDelegate, MTGBidInterstitialVideoDelegate>
+@interface NetworkInterstitialCustomEvent()<MTGInterstitialVideoDelegate, MTGBidInterstitialVideoDelegate>
 
 @property (nonatomic, copy) NSString *mintegralAdUnitId;
 @property (nonatomic, copy) NSString *adPlacementId;
@@ -22,7 +22,7 @@
 @property (nonatomic,strong) MTGBidInterstitialVideoAdManager *ivBidAdManager;
 @end
 
-@implementation MintegralNetworkInterstitialCustomEvent
+@implementation NetworkInterstitialCustomEvent
 @dynamic delegate;
 @dynamic localExtras;
 @dynamic hasAdAvailable;
@@ -67,7 +67,7 @@
     self.adPlacementId = placementId;
     self.adm = adMarkup;
     
-    [MintegralNetworkAdapterConfiguration initializeMintegral:info setAppID:appId appKey:appKey];
+    [NetworkAdapterConfiguration initializeMintegral:info setAppID:appId appKey:appKey];
     
     if (self.adm) {
         MPLogInfo(@"Loading Mintegral interstitial ad markup for Advanced Bidding");
@@ -77,7 +77,7 @@
             _ivBidAdManager.delegate = self;
         }
         
-        _ivBidAdManager.playVideoMute = [MintegralNetworkAdapterConfiguration isMute];
+        _ivBidAdManager.playVideoMute = [NetworkAdapterConfiguration isMute];
         [_ivBidAdManager loadAdWithBidToken:self.adm];
     } else {
         MPLogInfo(@"Loading Mintegral interstitial ad");
@@ -86,7 +86,7 @@
             _mtgInterstitialVideoAdManager = [[MTGInterstitialVideoAdManager alloc] initWithPlacementId:placementId unitId:unitId delegate:self];
         }
         
-        _mtgInterstitialVideoAdManager.playVideoMute = [MintegralNetworkAdapterConfiguration isMute];
+        _mtgInterstitialVideoAdManager.playVideoMute = [NetworkAdapterConfiguration isMute];
         [_mtgInterstitialVideoAdManager loadAd];
     }
     
@@ -102,11 +102,11 @@
 {
     if (self.adm) {
         MPLogAdEvent([MPLogEvent adShowAttemptForAdapter:NSStringFromClass(self.class)], self.mintegralAdUnitId);
-        _ivBidAdManager.playVideoMute = [MintegralNetworkAdapterConfiguration isMute];
+        _ivBidAdManager.playVideoMute = [NetworkAdapterConfiguration isMute];
         [_ivBidAdManager showFromViewController:viewController];
     } else {
         MPLogAdEvent([MPLogEvent adShowAttemptForAdapter:NSStringFromClass(self.class)], self.mintegralAdUnitId);
-        _mtgInterstitialVideoAdManager.playVideoMute = [MintegralNetworkAdapterConfiguration isMute];
+        _mtgInterstitialVideoAdManager.playVideoMute = [NetworkAdapterConfiguration isMute];
         [_mtgInterstitialVideoAdManager showFromViewController:viewController];
     }
 }

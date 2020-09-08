@@ -1,5 +1,5 @@
 #import <Foundation/Foundation.h>
-#import "NetworkNativeAdRenderer.h"
+#import "MintegralNativeAdRenderer.h"
 #if __has_include("MoPub.h")
     #import "MPLogging.h"
     #import "MPNativeAdAdapter.h"
@@ -15,20 +15,20 @@
     #import "MPHTTPNetworkSession.h"
     #import "MPMemoryCache.h"
 #endif
-#import "NetworkNativeAdAdapter.h"
+#import "MintegralNativeAdAdapter.h"
 #import <MTGSDK/MTGAdChoicesView.h>
 
-@interface NetworkNativeAdRenderer () <MPNativeAdRendererImageHandlerDelegate>
+@interface MintegralNativeAdRenderer () <MPNativeAdRendererImageHandlerDelegate>
 
 @property (nonatomic, strong) UIView<MPNativeAdRendering> *adView;
-@property (nonatomic, strong) NetworkNativeAdAdapter *adapter;
+@property (nonatomic, strong) MintegralNativeAdAdapter *adapter;
 @property (nonatomic, strong) Class renderingViewClass;
 @property (nonatomic, strong) MPNativeAdRendererImageHandler *rendererImageHandler;
 @property (nonatomic, assign) BOOL adViewInViewHierarchy;
 
 @end
 
-@implementation NetworkNativeAdRenderer
+@implementation MintegralNativeAdRenderer
 
 
 - (instancetype)initWithRendererSettings:(id<MPNativeAdRendererSettings>)rendererSettings
@@ -49,14 +49,14 @@
     MPNativeAdRendererConfiguration *config = [[MPNativeAdRendererConfiguration alloc] init];
     config.rendererClass = [self class];
     config.rendererSettings = rendererSettings;
-    config.supportedCustomEvents = @[@"NetworkNativeCustomEvent"];
+    config.supportedCustomEvents = @[@"MintegralNativeCustomEvent"];
     
     return config;
 }
 
 - (UIView *)retrieveViewWithAdapter:(id<MPNativeAdAdapter>)adapter error:(NSError **)error
 {
-    if (!adapter || ![adapter isKindOfClass:[NetworkNativeAdAdapter class]]) {
+    if (!adapter || ![adapter isKindOfClass:[MintegralNativeAdAdapter class]]) {
         if (error) {
             *error = MPNativeAdNSErrorForRenderValueTypeError();
         }

@@ -3,9 +3,13 @@
 #elif __has_include(<MoPubSDKFramework/MoPub.h>)
     #import <MoPubSDKFramework/MoPub.h>
 #else
-    #import "MPFullscreenAdAdapter.h"
+    #import "MPInlineAdAdapter.h"
 #endif
 
-@interface NetworkInterstitialCustomEvent : MPFullscreenAdAdapter <MPThirdPartyFullscreenAdAdapter>
+NS_ASSUME_NONNULL_BEGIN
+
+@interface MintegralBannerCustomEvent : MPInlineAdAdapter <MPThirdPartyInlineAdAdapter>
 
 @end
+
+NS_ASSUME_NONNULL_END

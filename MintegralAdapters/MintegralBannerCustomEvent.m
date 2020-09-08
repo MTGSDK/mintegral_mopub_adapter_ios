@@ -1,6 +1,6 @@
-#import "NetworkBannerCustomEvent.h"
+#import "MintegralBannerCustomEvent.h"
 #import <MTGSDK/MTGSDK.h>
-#import "NetworkAdapterConfiguration.h"
+#import "MintegralAdapterConfiguration.h"
 #import <MTGSDKBanner/MTGBannerAdView.h>
 #import <MTGSDKBanner/MTGBannerAdViewDelegate.h>
 #if __has_include(<MoPubSDKFramework/MoPub.h>)
@@ -23,7 +23,7 @@ typedef enum {
     MintegralErrorBannerCamPaignListEmpty,
 } MintegralBannerErrorCode;
 
-@interface NetworkBannerCustomEvent() <MTGBannerAdViewDelegate>
+@interface MintegralBannerCustomEvent() <MTGBannerAdViewDelegate>
 
 @property(nonatomic,strong) MTGBannerAdView *bannerAdView;
 @property (nonatomic, copy) NSString *mintegralAdUnitId;
@@ -31,7 +31,7 @@ typedef enum {
 @property (nonatomic, copy) NSString *adm;
 @end
 
-@implementation NetworkBannerCustomEvent
+@implementation MintegralBannerCustomEvent
 @dynamic delegate;
 @dynamic localExtras;
 
@@ -62,7 +62,7 @@ typedef enum {
     self.adPlacementId = placementId;
     
     
-    [NetworkAdapterConfiguration initializeMintegral:info setAppID:appId appKey:appKey];
+    [MintegralAdapterConfiguration initializeMintegral:info setAppID:appId appKey:appKey];
     
     UIViewController *vc =  [UIApplication sharedApplication].keyWindow.rootViewController;
     _bannerAdView = [[MTGBannerAdView alloc] initBannerAdViewWithAdSize:size placementId:placementId unitId:unitId rootViewController:vc];

@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 @class MPNativeAdRendererConfiguration;
 @class MPStaticNativeAdRendererSettings;
 
-@interface NetworkNativeAdRenderer : NSObject <MPNativeAdRenderer>
+@interface MintegralNativeAdRenderer : NSObject <MPNativeAdRenderer>
 
 @property (nonatomic, readonly) MPNativeViewSizeHandler viewSizeHandler;
 

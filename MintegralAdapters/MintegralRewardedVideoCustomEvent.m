@@ -1,8 +1,8 @@
-#import "NetworkRewardedVideoCustomEvent.h"
+#import "MintegralRewardedVideoCustomEvent.h"
 #import <MTGSDK/MTGSDK.h>
 #import <MTGSDKReward/MTGRewardAdManager.h>
 #import <MTGSDKReward/MTGBidRewardAdManager.h>
-#import "NetworkAdapterConfiguration.h"
+#import "MintegralAdapterConfiguration.h"
 #if __has_include(<MoPubSDKFramework/MoPub.h>)
     #import <MoPubSDKFramework/MoPub.h>
 #elif __has_include(<MoPub/MoPub.h>)
@@ -25,7 +25,7 @@
     #import "MPReward.h"
 #endif
 
-@interface NetworkRewardedVideoCustomEvent () <MTGRewardAdLoadDelegate,MTGRewardAdShowDelegate>
+@interface MintegralRewardedVideoCustomEvent () <MTGRewardAdLoadDelegate,MTGRewardAdShowDelegate>
 
 @property (nonatomic, copy) NSString *mintegralAdUnitId;
 @property (nonatomic, copy) NSString *adPlacementId;
@@ -33,7 +33,7 @@
 
 @end
 
-@implementation NetworkRewardedVideoCustomEvent
+@implementation MintegralRewardedVideoCustomEvent
 @dynamic delegate;
 @dynamic localExtras;
 @dynamic hasAdAvailable;
@@ -80,16 +80,16 @@
     self.adPlacementId = placementId;
     self.adm = adMarkup;
     
-    [NetworkAdapterConfiguration initializeMintegral:info setAppID:appId appKey:appKey];
+    [MintegralAdapterConfiguration initializeMintegral:info setAppID:appId appKey:appKey];
     
     if (self.adm) {
         MPLogInfo(@"Loading Mintegral rewarded ad markup for Advanced Bidding");
-        [MTGBidRewardAdManager sharedInstance].playVideoMute = [NetworkAdapterConfiguration isMute];
+        [MTGBidRewardAdManager sharedInstance].playVideoMute = [MintegralAdapterConfiguration isMute];
         
         [[MTGBidRewardAdManager sharedInstance] loadVideoWithBidToken:self.adm placementId:placementId unitId:unitId delegate:self];
     } else {
         MPLogInfo(@"Loading Mintegral rewarded ad");
-        [MTGRewardAdManager sharedInstance].playVideoMute = [NetworkAdapterConfiguration isMute];
+        [MTGRewardAdManager sharedInstance].playVideoMute = [MintegralAdapterConfiguration isMute];
         [[MTGRewardAdManager sharedInstance] loadVideoWithPlacementId:placementId unitId:unitId delegate:self];
     }
     
@@ -108,10 +108,10 @@
             MPLogAdEvent([MPLogEvent adWillAppearForAdapter:NSStringFromClass(self.class)], self.mintegralAdUnitId);
             
             if (self.adm) {
-                [MTGBidRewardAdManager sharedInstance].playVideoMute = [NetworkAdapterConfiguration isMute];
+                [MTGBidRewardAdManager sharedInstance].playVideoMute = [MintegralAdapterConfiguration isMute];
                 [[MTGBidRewardAdManager sharedInstance] showVideoWithPlacementId:self.adPlacementId unitId:self.mintegralAdUnitId withRewardId:@"1" userId:customerId delegate:self viewController:viewController];
             } else {
-                [MTGRewardAdManager sharedInstance].playVideoMute = [NetworkAdapterConfiguration isMute];
+                [MTGRewardAdManager sharedInstance].playVideoMute = [MintegralAdapterConfiguration isMute];
                 [[MTGRewardAdManager sharedInstance] showVideoWithPlacementId:self.adPlacementId unitId:self.mintegralAdUnitId withRewardId:@"1" userId:customerId delegate:self viewController:viewController];
             }
         }

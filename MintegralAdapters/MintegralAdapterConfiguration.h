@@ -11,7 +11,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 extern NSString *const kMintegralErrorDomain;
 
-@interface NetworkAdapterConfiguration : MPBaseAdapterConfiguration
+@interface MintegralAdapterConfiguration : MPBaseAdapterConfiguration
 
 @property (nonatomic, copy, readonly) NSString * adapterVersion;
 

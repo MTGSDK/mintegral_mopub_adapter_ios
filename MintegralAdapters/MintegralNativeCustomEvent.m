@@ -8,6 +8,15 @@
     #import "MPLogging.h"
 #endif
 
+#if __has_include(<MTGSDK/MTGSDK.h>)
+
+    #import <MTGSDK/MTGSDK.h>
+    #import <MTGSDK/MTGBidNativeAdManager.h>
+#else
+    #import "MTGSDK.h"
+    #import "MTGBidNativeAdManager.h"
+#endif
+
 @interface MintegralNativeCustomEvent()<MTGNativeAdManagerDelegate, MTGMediaViewDelegate, MTGBidNativeAdManagerDelegate>
 
 @property (nonatomic, readwrite, strong) MTGNativeAdManager *mtgNativeAdManager;

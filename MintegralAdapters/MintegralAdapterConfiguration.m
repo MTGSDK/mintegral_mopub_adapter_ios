@@ -1,10 +1,22 @@
 #import <Foundation/Foundation.h>
 #import "MintegralAdapterConfiguration.h"
-#import <MTGSDK/MTGSDK.h>
-#import <MTGSDKBidding/MTGBiddingSDK.h>
+
 #if __has_include("MoPub.h")
     #import "MoPub.h"
 #endif
+
+
+#if __has_include(<MTGSDK/MTGBiddingSDK.h>)
+    #import <MTGSDK/MTGSDK.h>
+    #import <MTGSDK/MTGBiddingSDK.h>
+#elif __has_include(<MTGSDK/MTGSDK.h>)
+    #import <MTGSDK/MTGSDK.h>
+    #import <MTGSDKBidding/MTGBiddingSDK.h>
+#else
+    #import "MTGSDK.h"
+    #import "MTGBiddingSDK.h"
+#endif
+
 
 @interface MintegralAdapterConfiguration()
 

@@ -1,8 +1,22 @@
 #import "MintegralInterstitialCustomEvent.h"
-#import <MTGSDK/MTGSDK.h>
-#import <MTGSDKInterstitialVideo/MTGInterstitialVideoAdManager.h>
-#import <MTGSDKInterstitialVideo/MTGBidInterstitialVideoAdManager.h>
 #import "MintegralAdapterConfiguration.h"
+
+
+#if __has_include(<MTGSDKInterstitialVideo/MTGInterstitialVideoAdManager.h>)
+
+    #import <MTGSDK/MTGSDK.h>
+    #import <MTGSDKInterstitialVideo/MTGInterstitialVideoAdManager.h>
+    #import <MTGSDKInterstitialVideo/MTGBidInterstitialVideoAdManager.h>
+#elif __has_include(<MTGSDK/MTGInterstitialVideoAdManager.h>)
+    #import <MTGSDK/MTGSDK.h>
+    #import <MTGSDK/MTGInterstitialVideoAdManager.h>
+    #import <MTGSDK/MTGBidInterstitialVideoAdManager.h>
+#else
+    #import "MTGInterstitialVideoAdManager.h"
+    #import "MTGBidInterstitialVideoAdManager.h"
+#endif
+
+
 #if __has_include(<MoPubSDKFramework/MoPub.h>)
     #import <MoPubSDKFramework/MoPub.h>
 #elif __has_include(<MoPub/MoPub.h>)

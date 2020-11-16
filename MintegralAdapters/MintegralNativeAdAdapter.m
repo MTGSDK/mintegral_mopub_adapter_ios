@@ -1,9 +1,19 @@
 #import "MintegralNativeAdAdapter.h"
-#import <MTGSDK/MTGNativeAdManager.h>
-#import <MTGSDK/MTGBidNativeAdManager.h>
-#import <MTGSDK/MTGCampaign.h>
-#import <MTGSDK/MTGMediaView.h>
-#import <MTGSDK/MTGAdChoicesView.h>
+
+#if __has_include(<MTGSDK/MTGMediaView.h>)
+
+    #import <MTGSDK/MTGSDK.h>
+    #import <MTGSDK/MTGAdChoicesView.h>
+    #import <MTGSDK/MTGBidNativeAdManager.h>
+    #import <MTGSDK/MTGNativeAdManager.h>
+#else
+    #import "MTGSDK.h"
+    #import "MTGAdChoicesView.h"
+    #import "MTGBidNativeAdManager.h"
+    #import "MTGNativeAdManager.h"
+#endif
+
+
 #if __has_include("MoPub.h")
     #import "MPNativeAdConstants.h"
     #import "MPLogging.h"

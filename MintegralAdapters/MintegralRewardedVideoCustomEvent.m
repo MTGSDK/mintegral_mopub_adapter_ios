@@ -1,8 +1,23 @@
 #import "MintegralRewardedVideoCustomEvent.h"
-#import <MTGSDK/MTGSDK.h>
-#import <MTGSDKReward/MTGRewardAdManager.h>
-#import <MTGSDKReward/MTGBidRewardAdManager.h>
 #import "MintegralAdapterConfiguration.h"
+
+
+#if __has_include(<MTGSDKReward/MTGRewardAdManager.h>)
+
+    #import <MTGSDK/MTGSDK.h>
+    #import <MTGSDKReward/MTGRewardAdManager.h>
+    #import <MTGSDKReward/MTGBidRewardAdManager.h>
+#elif __has_include(<MTGSDK/MTGRewardAdManager.h>)
+    #import <MTGSDK/MTGSDK.h>
+    #import <MTGSDK/MTGRewardAdManager.h>
+    #import <MTGSDK/MTGBidRewardAdManager.h>
+#else
+    #import "MTGSDK.h"
+    #import "MTGRewardAdManager.h"
+    #import "MTGBidRewardAdManager.h"
+#endif
+
+
 #if __has_include(<MoPubSDKFramework/MoPub.h>)
     #import <MoPubSDKFramework/MoPub.h>
 #elif __has_include(<MoPub/MoPub.h>)

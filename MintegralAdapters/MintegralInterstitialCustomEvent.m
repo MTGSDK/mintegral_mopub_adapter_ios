@@ -167,6 +167,21 @@
     
     MPLogAdEvent([MPLogEvent adDidDisappearForAdapter:NSStringFromClass(self.class)], self.mintegralAdUnitId);
     [self.delegate fullscreenAdAdapterAdDidDisappear:self];
+    
+        
+        #pragma clang diagnostic push
+        #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+        
+        SEL adDidDismissSelectorAboveMopubV5_15_0 = @selector(fullscreenAdAdapterAdDidDismiss:);
+           
+    if ([self.delegate respondsToSelector:adDidDismissSelectorAboveMopubV5_15_0]) {
+    
+        [self.delegate performSelector:adDidDismissSelectorAboveMopubV5_15_0 withObject:self];
+    }
+        #pragma clang diagnostic pop
+        
+    
+    
 }
 
 @end

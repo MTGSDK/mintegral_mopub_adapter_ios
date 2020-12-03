@@ -15,7 +15,7 @@
     #import "MPHTTPNetworkSession.h"
     #import "MPMemoryCache.h"
 #endif
-#import "NetworkNativeAdAdapter.h"
+#import "MintegralNativeAdAdapter.h"
 
 #if __has_include(<MTGSDK/MTGAdChoicesView.h>)
 

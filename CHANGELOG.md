@@ -8,7 +8,7 @@
 
 #### 6.6.8.0.
 - support 3 kind type of sdk
-- Using Mintegral SDK v6.8.0 and above
+- Using Mintegral SDK v6.6.8 and above
 
 #### 6.5.0.4
 - renew all the adapter class fileame

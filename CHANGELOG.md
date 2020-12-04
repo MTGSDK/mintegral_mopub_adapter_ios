@@ -1,6 +1,12 @@
 # Mintegral - iOS MoPubAdapter Changelog
 
-#### 6.8.0.0
+#### 6.6.8.2.
+- Compatibled with Mopub version 5.15
+
+#### 6.6.8.1.
+- bug fixed
+
+#### 6.6.8.0.
 - support 3 kind type of sdk
 - Using Mintegral SDK v6.8.0 and above
 

@@ -8,15 +8,6 @@
     #import "MPLogging.h"
 #endif
 
-#if __has_include(<MTGSDK/MTGSDK.h>)
-
-    #import <MTGSDK/MTGSDK.h>
-    #import <MTGSDK/MTGBidNativeAdManager.h>
-#else
-    #import "MTGSDK.h"
-    #import "MTGBidNativeAdManager.h"
-#endif
-
 @interface MintegralNativeCustomEvent()<MTGNativeAdManagerDelegate, MTGMediaViewDelegate, MTGBidNativeAdManagerDelegate>
 
 @property (nonatomic, readwrite, strong) MTGNativeAdManager *mtgNativeAdManager;
@@ -69,8 +60,7 @@
         }
     } else {
         MPLogInfo(@"Loading Mintegral native ad");
-        
-        _mtgNativeAdManager = [[MTGNativeAdManager alloc] initWithPlacementId:placementId unitID:unitId fbPlacementId:@"" supportedTemplates:@[[MTGTemplate templateWithType:MTGAD_TEMPLATE_BIG_IMAGE adsNum:1]] autoCacheImage:NO adCategory:0 presentingViewController:nil];
+        _mtgNativeAdManager = [[MTGNativeAdManager alloc] initWithPlacementId:placementId unitID:unitId supportedTemplates:@[[MTGTemplate templateWithType:MTGAD_TEMPLATE_BIG_IMAGE adsNum:1]] autoCacheImage:NO adCategory:0 presentingViewController:nil];
         _mtgNativeAdManager.delegate = self;
         [_mtgNativeAdManager loadAds];
         

@@ -1,22 +1,10 @@
 #import <Foundation/Foundation.h>
 #import "MintegralAdapterConfiguration.h"
-
+#import <MTGSDK/MTGSDK.h>
+#import <MTGSDKBidding/MTGBiddingSDK.h>
 #if __has_include("MoPub.h")
     #import "MoPub.h"
 #endif
-
-
-#if __has_include(<MTGSDK/MTGBiddingSDK.h>)
-    #import <MTGSDK/MTGSDK.h>
-    #import <MTGSDK/MTGBiddingSDK.h>
-#elif __has_include(<MTGSDK/MTGSDK.h>)
-    #import <MTGSDK/MTGSDK.h>
-    #import <MTGSDKBidding/MTGBiddingSDK.h>
-#else
-    #import "MTGSDK.h"
-    #import "MTGBiddingSDK.h"
-#endif
-
 
 @interface MintegralAdapterConfiguration()
 
@@ -26,15 +14,16 @@ static BOOL mintegralSDKInitialized = NO;
 static BOOL mute = NO;
 
 NSString *const kMintegralErrorDomain = @"com.mintegral.iossdk.mopub";
-NSString *const kPluginNumber = @"Y+H6DFttYrPQYcIA+F2F+F5/Hv==";
-NSString *const kNetworkName = @"mintegral";
+static NSString *const kPluginNumber = @"Y+H6DFttYrPQYcIA+F2F+F5/Hv==";
+static NSString *const kNetworkName = @"mintegral";
+static NSString *const kAdapterVersion = @"6.9.1.0.0";
 
 @implementation MintegralAdapterConfiguration
 
 #pragma mark - MPAdapterConfiguration
 
 - (NSString *)adapterVersion {
-    return @"6.6.8.2";
+    return kAdapterVersion;
 }
 
 - (NSString *)biddingToken {
@@ -46,7 +35,7 @@ NSString *const kNetworkName = @"mintegral";
 }
 
 - (NSString *)networkSdkVersion {
-    return @"6.6.8";
+    return MTGSDK.sdkVersion;
 }
 
 - (void)initializeNetworkWithConfiguration:(NSDictionary<NSString *,id> *)configuration complete:(void (^)(NSError * _Nullable))complete {

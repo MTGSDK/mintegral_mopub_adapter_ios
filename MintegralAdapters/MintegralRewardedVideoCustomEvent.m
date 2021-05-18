@@ -1,23 +1,8 @@
 #import "MintegralRewardedVideoCustomEvent.h"
+#import <MTGSDK/MTGSDK.h>
+#import <MTGSDKReward/MTGRewardAdManager.h>
+#import <MTGSDKReward/MTGBidRewardAdManager.h>
 #import "MintegralAdapterConfiguration.h"
-
-
-#if __has_include(<MTGSDKReward/MTGRewardAdManager.h>)
-
-    #import <MTGSDK/MTGSDK.h>
-    #import <MTGSDKReward/MTGRewardAdManager.h>
-    #import <MTGSDKReward/MTGBidRewardAdManager.h>
-#elif __has_include(<MTGSDK/MTGRewardAdManager.h>)
-    #import <MTGSDK/MTGSDK.h>
-    #import <MTGSDK/MTGRewardAdManager.h>
-    #import <MTGSDK/MTGBidRewardAdManager.h>
-#else
-    #import "MTGSDK.h"
-    #import "MTGRewardAdManager.h"
-    #import "MTGBidRewardAdManager.h"
-#endif
-
-
 #if __has_include(<MoPubSDKFramework/MoPub.h>)
     #import <MoPubSDKFramework/MoPub.h>
 #elif __has_include(<MoPub/MoPub.h>)
@@ -131,7 +116,7 @@
             }
         }
     } else {
-        NSError *error = [NSError errorWithDomain:MoPubRewardedVideoAdsSDKDomain code:MPRewardedVideoAdErrorNoAdsAvailable userInfo:nil];
+        NSError *error = [NSError errorWithDomain:MoPubRewardedAdsSDKDomain code:MPRewardedVideoAdErrorNoAdsAvailable userInfo:nil];
         
         MPLogAdEvent([MPLogEvent adShowFailedForAdapter:NSStringFromClass(self.class) error:error], self.mintegralAdUnitId);
         [self.delegate fullscreenAdAdapter:self didFailToShowAdWithError:error];
@@ -165,8 +150,8 @@
     MPLogAdEvent([MPLogEvent adShowSuccessForAdapter:NSStringFromClass(self.class)], self.mintegralAdUnitId);
     
     [self.delegate fullscreenAdAdapterDidTrackImpression:self];
-    [self.delegate fullscreenAdAdapterAdWillAppear:self];
-    [self.delegate fullscreenAdAdapterAdDidAppear:self];
+    [self.delegate fullscreenAdAdapterAdWillPresent:self];
+    [self.delegate fullscreenAdAdapterAdDidPresent:self];
 }
 
 - (void)onVideoAdShowFailed:(NSString *)placementId unitId:(NSString *)unitId withError:(NSError *)error {
@@ -195,32 +180,13 @@
         
     MPLogAdEvent([MPLogEvent adWillDisappearForAdapter:NSStringFromClass(self.class)], self.mintegralAdUnitId);
     [self.delegate fullscreenAdAdapterAdWillDisappear:self];
+    [self.delegate fullscreenAdAdapterAdWillDismiss:self];
 }
 
 - (void)onVideoAdDidClosed:(NSString *)placementId unitId:(NSString *)unitId {
     MPLogAdEvent([MPLogEvent adDidDisappearForAdapter:NSStringFromClass(self.class)], self.mintegralAdUnitId);
     [self.delegate fullscreenAdAdapterAdDidDisappear:self];
-    
-    
-    // Signal that the fullscreen ad is closing and the state should be reset.
-    // `fullscreenAdAdapterAdDidDismiss:` was introduced in MoPub SDK 5.15.0.
-    
-    
-    #pragma clang diagnostic push
-    #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-    
-    SEL adDidDismissSelectorAboveMopubV5_15_0 = @selector(fullscreenAdAdapterAdDidDismiss:);
-       
-    if ([self.delegate respondsToSelector:adDidDismissSelectorAboveMopubV5_15_0]) {
-    
-        [self.delegate performSelector:adDidDismissSelectorAboveMopubV5_15_0 withObject:self];
-    }
-        
-    #pragma clang diagnostic pop
-    
+    [self.delegate fullscreenAdAdapterAdDidDismiss:self];
 }
-
-
-
 
 @end

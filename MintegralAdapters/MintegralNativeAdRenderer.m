@@ -16,14 +16,7 @@
     #import "MPMemoryCache.h"
 #endif
 #import "MintegralNativeAdAdapter.h"
-
-#if __has_include(<MTGSDK/MTGAdChoicesView.h>)
-
-    #import <MTGSDK/MTGAdChoicesView.h>
-
-#else
-    #import "MTGAdChoicesView.h"
-#endif
+#import <MTGSDK/MTGAdChoicesView.h>
 
 @interface MintegralNativeAdRenderer () <MPNativeAdRendererImageHandlerDelegate>
 

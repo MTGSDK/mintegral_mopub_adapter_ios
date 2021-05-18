@@ -1,23 +1,8 @@
 #import "MintegralBannerCustomEvent.h"
+#import <MTGSDK/MTGSDK.h>
 #import "MintegralAdapterConfiguration.h"
-
-#if __has_include(<MTGSDKBanner/MTGBannerAdView.h>)
-
-    #import <MTGSDK/MTGSDK.h>
-    #import <MTGSDKBanner/MTGBannerAdView.h>
-    #import <MTGSDKBanner/MTGBannerAdViewDelegate.h>
-#elif __has_include(<MTGSDK/MTGBannerAdView.h>)
-    #import <MTGSDK/MTGSDK.h>
-    #import <MTGSDK/MTGBannerAdView.h>
-    #import <MTGSDK/MTGBannerAdViewDelegate.h>
-#else
-    #import "MTGSDK.h"
-    #import "MTGBannerAdView.h"
-    #import "MTGBannerAdViewDelegate.h"
-#endif
-
-
-
+#import <MTGSDKBanner/MTGBannerAdView.h>
+#import <MTGSDKBanner/MTGBannerAdViewDelegate.h>
 #if __has_include(<MoPubSDKFramework/MoPub.h>)
     #import <MoPubSDKFramework/MoPub.h>
 #elif __has_include(<MoPub/MoPub.h>)

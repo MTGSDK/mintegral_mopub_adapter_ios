@@ -1,22 +1,8 @@
 #import "MintegralInterstitialCustomEvent.h"
+#import <MTGSDK/MTGSDK.h>
+#import <MTGSDKInterstitialVideo/MTGInterstitialVideoAdManager.h>
+#import <MTGSDKInterstitialVideo/MTGBidInterstitialVideoAdManager.h>
 #import "MintegralAdapterConfiguration.h"
-
-
-#if __has_include(<MTGSDKInterstitialVideo/MTGInterstitialVideoAdManager.h>)
-
-    #import <MTGSDK/MTGSDK.h>
-    #import <MTGSDKInterstitialVideo/MTGInterstitialVideoAdManager.h>
-    #import <MTGSDKInterstitialVideo/MTGBidInterstitialVideoAdManager.h>
-#elif __has_include(<MTGSDK/MTGInterstitialVideoAdManager.h>)
-    #import <MTGSDK/MTGSDK.h>
-    #import <MTGSDK/MTGInterstitialVideoAdManager.h>
-    #import <MTGSDK/MTGBidInterstitialVideoAdManager.h>
-#else
-    #import "MTGInterstitialVideoAdManager.h"
-    #import "MTGBidInterstitialVideoAdManager.h"
-#endif
-
-
 #if __has_include(<MoPubSDKFramework/MoPub.h>)
     #import <MoPubSDKFramework/MoPub.h>
 #elif __has_include(<MoPub/MoPub.h>)
@@ -143,9 +129,9 @@
     MPLogAdEvent([MPLogEvent adShowSuccessForAdapter:NSStringFromClass(self.class)], self.mintegralAdUnitId);
     MPLogAdEvent([MPLogEvent adWillAppearForAdapter:NSStringFromClass(self.class)], self.mintegralAdUnitId);
     [self.delegate fullscreenAdAdapterDidTrackImpression:self];
-    [self.delegate fullscreenAdAdapterAdWillAppear:self];
+    [self.delegate fullscreenAdAdapterAdWillPresent:self];
     MPLogAdEvent([MPLogEvent adDidAppearForAdapter:NSStringFromClass(self.class)], self.mintegralAdUnitId);
-    [self.delegate fullscreenAdAdapterAdDidAppear:self];
+    [self.delegate fullscreenAdAdapterAdDidPresent:self];
 }
 
 - (void)onInterstitialVideoShowFail:(nonnull NSError *)error adManager:(MTGInterstitialVideoAdManager *_Nonnull)adManager
@@ -164,24 +150,14 @@
 {
     MPLogAdEvent([MPLogEvent adWillDisappearForAdapter:NSStringFromClass(self.class)], self.mintegralAdUnitId);
     [self.delegate fullscreenAdAdapterAdWillDisappear:self];
-    
+    [self.delegate fullscreenAdAdapterAdWillDismiss:self];
+  
+}
+
+- (void)onInterstitialVideoAdDidClosed:(MTGInterstitialVideoAdManager *_Nonnull)adManager {
     MPLogAdEvent([MPLogEvent adDidDisappearForAdapter:NSStringFromClass(self.class)], self.mintegralAdUnitId);
     [self.delegate fullscreenAdAdapterAdDidDisappear:self];
-    
-        
-        #pragma clang diagnostic push
-        #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-        
-        SEL adDidDismissSelectorAboveMopubV5_15_0 = @selector(fullscreenAdAdapterAdDidDismiss:);
-           
-    if ([self.delegate respondsToSelector:adDidDismissSelectorAboveMopubV5_15_0]) {
-    
-        [self.delegate performSelector:adDidDismissSelectorAboveMopubV5_15_0 withObject:self];
-    }
-        #pragma clang diagnostic pop
-        
-    
-    
+    [self.delegate fullscreenAdAdapterAdDidDismiss:self];
 }
 
 @end
